@@ -1,0 +1,174 @@
+
+buildscript {
+    addRepos(repositories)
+}
+
+apply plugin: deps.plugin.application
+apply plugin: deps.plugin.kotlin_android
+apply plugin: deps.plugin.kotlin_android_extensions
+apply plugin: deps.plugin.kotlin_kapt
+apply plugin: deps.plugin.navigation_safeargs
+
+android {
+    compileSdkVersion config.target_sdk
+    signingConfigs {
+        debug {
+            Properties props = discoverKeystore(project, "debug")
+            storeFile props["storeFile"]
+            storePassword props["storePassword"]
+            keyAlias props["keyAlias"]
+            keyPassword props["keyPassword"]
+        }
+        release {
+            Properties props = discoverKeystore(project, "release")
+            storeFile props["storeFile"]
+            storePassword props["storePassword"]
+            keyAlias props["keyAlias"]
+            keyPassword props["keyPassword"]
+        }
+    }
+    defaultConfig {
+        applicationId config.applicationId
+        minSdkVersion config.min_sdk
+        targetSdkVersion config.target_sdk
+        versionCode getAndroidVersionCode()
+        versionName getAndroidVersionName()
+        generateReleaseNotes()
+        multiDexEnabled true
+
+        testInstrumentationRunner deps.test.android_junit_runner
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+//            testCoverageEnabled true
+            provideAppSettings(owner, "debug")
+        }
+        //
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            provideAppSettings(owner, "release")
+        }
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+//    kapt {
+//        javacOptions {
+//            option("-Xmaxerrs", 500)
+//        }
+//    }
+// android studio 4+ is required!!!
+//    buildFeatures {
+//        // Enables Jetpack Compose for this module
+//        compose true
+//    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion versions.compose
+//    }
+    productFlavors {
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+dependencies {
+    // unit testing
+    testImplementation deps.test.core
+    testImplementation deps.test.ext_junit
+    testImplementation deps.test.robolectric
+    // instrumented testing
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.ext_junit
+    androidTestImplementation deps.test.espresso_core
+    androidTestImplementation deps.test.espresso_intents
+    androidTestImplementation deps.test.espresso_idling
+    androidTestImplementation deps.test.uiautomator
+    androidTestImplementation deps.test.fragment_testing
+
+    implementation deps.kotlin.stdlib
+//    implementation deps.kotlin.reflect
+    implementation deps.kotlin.core
+    implementation deps.kotlin.fragment
+//    implementation deps.kotlin.lifecycle_runtime
+    implementation deps.kotlin.lifecycle_viewmodel
+    implementation deps.kotlin.lifecycle_livedata
+    implementation deps.kotlin.lifecycle_reactivestreams
+    implementation deps.kotlin.navigation_ui
+    implementation deps.kotlin.navigation_fragment
+    implementation deps.kotlin.work
+
+    implementation deps.google.material
+    implementation deps.google.maps
+
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.constraint_layout
+    implementation deps.androidx.recyclerview
+//    implementation deps.androidx.viewpager2
+// android studio 4+ is required!!!
+//    implementation deps.androidx.compose_ui
+//    implementation deps.androidx.compose_tooling
+//    implementation deps.androidx.compose_layout
+//    implementation deps.androidx.compose_material
+
+    implementation deps.arch.lifecycle_common_java8
+//    implementation deps.arch.lifecycle_reactive_streams
+//    annotationProcessor deps.arch.room_compiler
+//    implementation deps.arch.room_runtime
+//    implementation deps.arch.room_rxjava2
+//    implementation deps.arch.paging_runtime
+//    implementation(deps.arch.work_runtime) /*{
+//        exclude group: 'com.google.guava', module: 'listenablefuture'
+//    }*/
+
+    implementation deps.push.firebase_core
+    implementation deps.push.firebase_messaging
+
+    implementation deps.other.rxjava
+    implementation deps.other.rx_android
+
+    kapt deps.other.glide_compiler
+    annotationProcessor deps.other.glide_compiler
+    implementation deps.other.glide
+//    implementation deps.other.glide_okhttp
+//    implementation deps.other.glide_transformations
+    implementation deps.other.android_svg
+
+    implementation deps.other.okhttp
+    implementation deps.other.okhttp_urlconnection
+    implementation deps.other.okhttp_logging
+    implementation deps.other.retrofit
+//    implementation deps.other.retrofit_adapter_rxjava3
+//    implementation deps.other.retrofit_converter_gson
+//    implementation deps.other.retrofit_converter_scalars
+    implementation deps.other.retrofit_converter_moshi
+
+    kapt deps.other.moshi_codegen
+    implementation deps.other.moshi
+    implementation deps.other.moshi_adapters
+//    implementation deps.other.gson
+}
+
+configurations.all {
+    resolutionStrategy {
+        preferProjectModules()
+    }
+}
+
+//apply plugin: deps.plugin.google_services

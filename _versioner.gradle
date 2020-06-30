@@ -1,0 +1,115 @@
+// calculates code of version and name
+
+//
+def checkGitDirty = {
+    return 'git diff --stat'.execute().text.trim() != ""
+}
+ext.checkGitDirty = checkGitDirty
+
+//
+def getGitSha = {
+    return 'git rev-parse --short HEAD'.execute().text.trim()
+}
+ext.getGitSha = getGitSha
+
+//
+def getAndroidGitDescribe = {
+    def desc = "git -C ${rootDir} describe --tags --long".execute().text.trim()
+//    println "------------------ DESC " + desc
+    return desc
+}
+ext.getAndroidGitDescribe = getAndroidGitDescribe
+
+//
+def getGitBranch = {
+//    return "git rev-parse --abbrev-ref HEAD".execute().text.trim()
+    def name = "git name-rev --name-only HEAD".execute().text.trim()
+    def parts = name.tokenize('/')
+    return parts.size() > 0 ? parts.last() : "no_branch"
+}
+ext.getGitBranch = getGitBranch
+
+//
+def getFullVersionName = {
+    def versionName = "77.77.77"
+    def (tag, buildNumber, gitSha) = getAndroidGitDescribe().tokenize('-')
+    if(tag /*&& tag.startsWith("v")*/) { // todo: improve?
+//        def version = tag.substring(1) // for tag format vX.Y.Z
+//        if(version.tokenize('.').size() == 3) {
+//            versionName = version + '.' + buildNumber
+        if(tag.tokenize('.').size() == 3) {
+            versionName = tag + '.' + buildNumber
+        }
+    }
+//    println "------------------ FULL VERSION NAME " + versionName
+    return versionName
+}
+ext.getFullVersionName = getFullVersionName
+
+//
+def getAndroidVersionName = {
+//    def fullVersionName = getFullVersionName()
+//    def versionName = fullVersionName.substring(0, fullVersionName.lastIndexOf('.'))
+    def desc = getAndroidGitDescribe()
+    def branch = getGitBranch()
+    def notMaster = branch != "master";
+    def dirty = checkGitDirty()
+    def versionName = desc + (notMaster ? "-" + branch : "") + (dirty ? "-dirty" : "")
+    println "------------------ version name " + versionName
+    return versionName
+}
+ext.getAndroidVersionName = getAndroidVersionName
+
+//
+def getAndroidVersionCode = {
+    def (major, minor, patch) = getFullVersionName().tokenize('.')
+    (major, minor, patch) = [major, minor, patch].collect{it.toInteger()}
+    def code = (major * 1000000) + (minor * 10000) + (patch * 100)
+    println "------------------ version code " + code
+    return code
+}
+ext.getAndroidVersionCode = getAndroidVersionCode
+
+//
+def generateReleaseNotes = {
+    def counts = getAndroidGitDescribe().tokenize('-')
+    def commitCount = counts.size() > 0 ? counts.get(1) : 0
+    def messages = ("git log -" + commitCount + " --pretty=%s --no-merges").execute().text.trim()
+
+//    println "------------------ messages " + messages
+
+    // todo: FILTER COMMITS BY TYPE (internal, release, etc)
+    // todo: internal are not shown in release notes
+    // todo: release messages are started from '###'
+    // collect commit messages without task #numbers
+    def releaseNotes = messages.tokenize('\n').collect {
+        // seek release messages
+        def index = it.indexOf('###')
+        if(index != -1) {
+            def message = it.substring(index + 3)
+            index = message.indexOf('#')
+            return index != -1 ? message.substring(0, index) : message;
+        }
+    }
+
+//    println "------------------ release notes: \n" + releaseNotes
+
+    def file = new File('release_notes.txt')
+    file.newWriter().withWriter {
+            Writer writer = it
+            int i = 0;
+            releaseNotes.collect {
+                if(it != null) {
+                    def line = ++i + "\\ " + it + "\n"
+                    writer << line
+                }
+            }
+    }
+
+//    return releaseNotes
+}
+ext.generateReleaseNotes = generateReleaseNotes
+
+
+
+

@@ -1,0 +1,124 @@
+
+//
+static void provideAppSettings(Object target, String type) {
+    Properties properties = discoverAppProperties(type)
+
+    // icon
+    target.manifestPlaceholders = properties["manifest_map"]
+
+    // label
+    target.resValue "string", "app_label", properties["app_label"]
+
+    // package suffix
+    target.applicationIdSuffix = properties["app_suffix"]
+
+    // intercepted urls
+//    target.resValue "string", "app_scheme", properties["app_scheme"]
+    target.resValue "string", "server_scheme", "https"
+    target.resValue "string", "server_host", properties["server_host"]
+
+    // add app center key
+//    target.resValue "string", "appcenter_key", properties["appcenter_key"]
+
+}
+ext.provideAppSettings = this.&provideAppSettings
+
+//
+static Properties discoverAppProperties(String type) {
+    def appSuffix, appIcon, appLabel, appScheme, serverHost, appCenterKey
+    //
+    switch(type) {
+        case "debug":
+            appSuffix = ".debug"
+//            appIcon = "@drawable/app_icon"
+            appIcon = "@mipmap/ic_launcher"
+            appLabel = "wodThat.dev"
+//            appScheme = "wodthat.app.dev"
+            serverHost = "wodcat.com"
+//            appCenterKey = "2eb26882-462a-4184-9251-28fa5a855639"
+            break
+
+        case "release":
+            appSuffix = ""
+//            appIcon = "@drawable/svg_app_icon"
+            appIcon = "@mipmap/ic_launcher"
+            appLabel = "wodThat"
+//            appScheme = "wodthat.app"
+            serverHost = "wodthat.com"
+//            appCenterKey = "2eb26882-462a-4184-9251-28fa5a855639"
+            break
+
+        default:
+            throw new IllegalArgumentException("Unknown build type '" + type + "'")
+
+    }
+    //
+    Properties properties = new Properties()
+    properties.put("app_suffix", appSuffix)
+    properties.put("manifest_map", [app_icon : appIcon])
+    properties.put("app_label", appLabel)
+//    properties.put("app_scheme", appScheme)
+    properties.put("server_host", serverHost)
+//    properties.put("appcenter_key", appCenterKey)
+    return properties
+}
+
+// apk signing
+static Properties discoverKeystore(Project project, String type) {
+
+    final STORE = 'keystore.file'
+    final PROPS = "keystore.properties"
+    final STORE_FILE = "storeFile"
+    final STORE_PASSWORD = "storePassword"
+    final KEY_ALIAS = "keyAlias"
+    final KEY_PASSWORD = "keyPassword"
+    def storePass = "null"
+    def keyPass = "null"
+    def askUser = true
+    Properties keystore = new Properties()
+
+    // seek keystore properties file
+    if(project.hasProperty(STORE)
+            && project.hasProperty(PROPS)) {
+        def storeFile = project.file("../${project.property(STORE)}")
+        def propsFile = project.file("../${project.property(PROPS)}")
+        if (storeFile.exists()
+                && propsFile.exists()) {
+            keystore.put(STORE_FILE, storeFile);
+            keystore.put(KEY_ALIAS, type)
+
+//            println "Loading keystore passwords from property file..."
+            Properties properties = new Properties()
+            properties.load(new FileInputStream(propsFile))
+            storePass = properties.getProperty((String) type + ".store.password")
+            keyPass = properties.getProperty((String) type + ".key.password")
+            //
+            askUser = storePass == null || keyPass == null
+        }
+
+        // no such props file or no needed params
+        if(askUser) {
+            // no system console (Android Studio)
+            if(System.console() == null) {
+                println "Enter keystore credentials failed. Console unavailable"
+                //
+            } else {
+                println "Enter keystore credentials for alias \'" + type + "\'"
+                storePass = new String(System.console().readPassword("\nStore password: "))
+                keyPass = new String(System.console().readPassword("Key password: "))
+            }
+        }
+    }
+
+    keystore.put(STORE_PASSWORD, storePass)
+    keystore.put(KEY_PASSWORD, keyPass)
+
+//    println "---------------- store_file '" + keystore.get(STORE_FILE) + "'"
+//    println "---------------- store_pass '" + keystore.get(STORE_PASSWORD) + "'"
+//    println "---------------- key_alias '" + keystore.get(KEY_ALIAS) + "'"
+//    println "---------------- key_pass '" + keystore.get(KEY_PASSWORD) + "'"
+
+    return keystore
+
+}
+ext.discoverKeystore = this.&discoverKeystore

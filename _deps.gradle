@@ -1,0 +1,170 @@
+//
+def config = [:]
+config.applicationId = "tk.atna.wodthat"
+config.min_sdk = 23
+config.target_sdk = 29
+ext.config = config
+
+ext.deps = [:]
+def versions = [:]
+versions.android_gradle_plugin = '4.0.0'
+versions.kotlin_version = '1.3.72'
+versions.google_services = "4.3.0"
+versions.material = "1.2.0-alpha06"
+versions.play_services = "17.0.0"
+versions.androidx = "1.1.0"
+versions.ktx = "1.1.0"
+versions.fragment_ktx = "1.2.4"
+versions.lifecycle_ktx = "2.2.0"
+versions.navigation_ktx = "2.2.2"
+versions.work_ktx = "2.2.0"
+versions.kotlin_reflect = "1.3.72"
+versions.fragment = "1.2.4"
+versions.constraint_layout = "2.0.0-beta4"
+//versions.viewpager2 = "1.0.0-beta03"
+//versions.compose = "0.1.0-dev09" // android studio 4+ is required!!!
+versions.espresso = "3.1.0"
+versions.uiautomator = "2.2.0"
+versions.test = "1.2.0"
+versions.ext_junit = "1.1.1"
+versions.robolectric = "4.3"
+versions.lifecycle = "2.1.0-rc01"
+//versions.room = "2.1.0-alpha02"
+//versions.paging = "2.1.0-rc01"
+versions.work = "1.0.1"
+//versions.play_services = "16.1.0"
+versions.firebase_core = "17.0.0"
+versions.firebase_messaging = "19.0.1"
+versions.rxjava3 = "3.0.3"
+versions.rx_android = "3.0.0"
+versions.glide = "4.9.0"
+//versions.glide_okhttp3 = "1.4.0@aar"
+//versions.glide_transformations = "3.3.0"
+versions.android_svg = "1.4"
+versions.okhttp4 = "4.6.0"
+versions.retrofit = "2.9.0"
+//versions.retrofit_adapter_rxjava3 = "2.9.0"
+//versions.retrofit_converter_gson = "2.9.0"
+//versions.retrofit_converter_scalars = "2.9.0"
+versions.moshi = "1.9.2"
+//versions.gson = "2.8.5"
+//versions.xxx = ""
+
+def deps = [:]
+//deps.xxx = "xxx:$versions.xxx"
+//ext.deps = deps
+
+def plugin = [:]
+plugin.application = 'com.android.application'
+plugin.kotlin_android = 'kotlin-android'
+plugin.kotlin_android_extensions = 'kotlin-android-extensions'
+plugin.kotlin_kapt = 'kotlin-kapt'
+plugin.navigation_safeargs = 'androidx.navigation.safeargs.kotlin'
+plugin.google_services = 'com.google.gms.google-services'
+deps.plugin = plugin
+
+def classpath = [:]
+classpath.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+classpath.kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin_version"
+classpath.google_services = "com.google.gms:google-services:$versions.google_services"
+classpath.navigation_safeargs = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation_ktx"
+deps.classpath = classpath
+
+def test = [:]
+test.android_junit_runner = "androidx.test.runner.AndroidJUnitRunner"
+test.core = "androidx.test:core:$versions.test"
+test.runner = "androidx.test:runner:$versions.test"
+test.ext_junit = "androidx.test.ext:junit:$versions.ext_junit"
+test.robolectric = "org.robolectric:robolectric:$versions.robolectric"
+test.espresso_core = "androidx.test.espresso:espresso-core:$versions.espresso"
+test.espresso_intents = "androidx.test.espresso:espresso-intents:$versions.espresso"
+test.espresso_idling = "androidx.test.espresso.idling:idling-concurrent:$versions.espresso"
+test.uiautomator = "androidx.test.uiautomator:uiautomator:$versions.uiautomator"
+test.fragment_testing = "androidx.fragment:fragment-testing:$versions.fragment"
+deps.test = test
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin_version"
+kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin_reflect"
+kotlin.core = "androidx.core:core-ktx:$versions.ktx"
+kotlin.fragment = "androidx.fragment:fragment-ktx:$versions.fragment_ktx"
+//kotlin.lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle_ktx"
+kotlin.lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle_ktx"
+kotlin.lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle_ktx"
+kotlin.lifecycle_reactivestreams = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$versions.lifecycle_ktx"
+kotlin.navigation_ui = "androidx.navigation:navigation-ui-ktx:$versions.navigation_ktx"
+kotlin.navigation_fragment = "androidx.navigation:navigation-fragment-ktx:$versions.navigation_ktx"
+kotlin.work = "androidx.work:work-runtime-ktx:$versions.work_ktx"
+deps.kotlin = kotlin
+
+def google = [:]
+google.material = "com.google.android.material:material:$versions.material"
+google.maps = "com.google.android.gms:play-services-maps:$versions.play_services"
+deps.google = google
+
+def androidx = [:]
+androidx.appcompat = "androidx.appcompat:appcompat:$versions.androidx"
+androidx.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+androidx.recyclerview = "androidx.recyclerview:recyclerview:$versions.androidx"
+//androidx.viewpager2 = "androidx.viewpager2:viewpager2:$versions.viewpager2"
+// android studio 4+ is required!!!
+//androidx.compose_ui = "androidx.ui:ui-framework:$versions.compose"
+//androidx.compose_tooling = "androidx.ui:ui-tooling:$versions.compose"
+//androidx.compose_layout = "androidx.ui:ui-layout:$versions.compose"
+//androidx.compose_material = "androidx.ui:ui-material:$versions.compose"
+deps.androidx = androidx
+
+def arch = [:]
+arch.lifecycle_common_java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+//arch.room_compiler = "androidx.room:room-compiler:$versions.room"
+//arch.room_runtime = "androidx.room:room-runtime:$versions.room"
+//arch.room_rxjava2 = "androidx.room:room-rxjava2:$versions.room"
+//arch.paging_runtime = "androidx.paging:paging-runtime:$versions.paging"
+//arch.work_runtime = "android.arch.work:work-runtime:$versions.work"
+deps.arch = arch
+
+def push = [:]
+//push.play_base = "com.google.android.gms:play-services-base:$versions.play_services"
+push.firebase_core = "com.google.firebase:firebase-core:$versions.firebase_core"
+push.firebase_messaging = "com.google.firebase:firebase-messaging:$versions.firebase_messaging"
+deps.push = push
+
+def other = [:]
+other.rxjava = "io.reactivex.rxjava3:rxjava:$versions.rxjava3"
+other.rx_android = "io.reactivex.rxjava3:rxandroid:$versions.rx_android"
+//
+other.glide = "com.github.bumptech.glide:glide:$versions.glide"
+other.glide_compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+//other.glide_okhttp = "com.github.bumptech.glide:okhttp3-integration:$versions.glide_okhttp3"
+//other.glide_transformations = "jp.wasabeef:glide-transformations:$versions.glide_transformations"
+other.android_svg = "com.caverock:androidsvg-aar:$versions.android_svg"
+//
+other.okhttp = "com.squareup.okhttp3:okhttp:$versions.okhttp4"
+other.okhttp_urlconnection = "com.squareup.okhttp3:okhttp-urlconnection:$versions.okhttp4"
+other.okhttp_logging = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp4"
+other.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+other.retrofit_adapter_rxjava3 = "com.squareup.retrofit2:adapter-rxjava3:$versions.retrofit"
+//other.retrofit_converter_gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+//other.retrofit_converter_scalars = "com.squareup.retrofit2:converter-scalars:$versions.retrofit"
+other.retrofit_converter_moshi = "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+//
+other.moshi = "com.squareup.moshi:moshi:$versions.moshi"
+//other.moshi_reflect = "com.squareup.moshi:moshi-kotlin:$versions.moshi"
+other.moshi_codegen = "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshi"
+other.moshi_adapters = "com.squareup.moshi:moshi-adapters:$versions.moshi"
+//other.gson = "com.google.code.gson:gson:$versions.gson"
+//other.xxx = "xxx:$versions.xxx"
+deps.other = other
+
+ext.deps = deps
+
+// repositories
+def static addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    handler.maven { url "https://jitpack.io" }
+}
+ext.addRepos = this.&addRepos
+

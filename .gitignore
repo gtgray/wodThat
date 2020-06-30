@@ -1,0 +1,19 @@
+# project files
+*.iml
+*.patch
+.gradle
+/local.properties
+/.idea
+
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# keystore folder
+/extras
+
+# system files
+*.json
+release_notes.*

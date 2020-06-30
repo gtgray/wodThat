@@ -1,0 +1,2 @@
+rootProject.name='wodthat'
+include ':app'
