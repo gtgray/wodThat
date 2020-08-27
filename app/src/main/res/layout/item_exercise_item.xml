@@ -1,0 +1,180 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="12dp"
+        android:background="@drawable/drw_back_rippled"
+        android:backgroundTint="@color/clr_back"
+        >
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/clr_black_30"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/clr_black_85"
+            android:textSize="@dimen/text_18"
+            android:fontFamily="@string/roboto_medium"
+            android:maxLines="2"
+            tools:text="Alternating Kettlebell Shoulder Press"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_modality"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_modality"
+            android:layout_width="@dimen/small_icon_size"
+            android:layout_height="@dimen/small_icon_size"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            tools:text="G"
+            android:textColor="@color/clr_back"
+            android:textSize="@dimen/text_14"
+            android:fontFamily="@string/roboto_medium"
+            android:background="@drawable/drw_circle_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_name"
+            />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/vg_level_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="iv_level, tv_level"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_level"
+            android:layout_width="@dimen/micro_icon_size"
+            android:layout_height="@dimen/micro_icon_size"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/svg_level"
+            android:tint="@color/clr_accent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            />
+
+        <TextView
+            android:id="@+id/tv_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/clr_black_55"
+            android:textSize="@dimen/text_12"
+            tools:text="Technically Complex"
+            app:layout_constraintStart_toEndOf="@id/iv_level"
+            app:layout_constraintTop_toTopOf="@id/iv_level"
+            app:layout_constraintBottom_toBottomOf="@id/iv_level"
+            />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/vg_movement_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="iv_movement, tv_movement"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_movement"
+            android:layout_width="@dimen/micro_icon_size"
+            android:layout_height="@dimen/micro_icon_size"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/svg_movement"
+            android:tint="@color/clr_accent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_level"
+            app:layout_constraintBottom_toTopOf="@id/iv_equipment"
+            app:layout_goneMarginBottom="16dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_movement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/clr_black_55"
+            android:textSize="@dimen/text_12"
+            tools:text="Cleans, Lunges, Thruster"
+            app:layout_constraintStart_toEndOf="@id/iv_movement"
+            app:layout_constraintTop_toTopOf="@id/iv_movement"
+            app:layout_constraintBottom_toBottomOf="@id/iv_movement"
+            />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/vg_equipment_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="iv_equipment, tv_equipment"
+            />
+            android:visibility="gone"
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_equipment"
+            android:layout_width="@dimen/micro_icon_size"
+            android:layout_height="@dimen/micro_icon_size"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@drawable/svg_equipment"
+            android:tint="@color/clr_accent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_movement"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_equipment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/clr_black_55"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintStart_toEndOf="@id/iv_equipment"
+            app:layout_constraintTop_toTopOf="@id/iv_equipment"
+            app:layout_constraintBottom_toBottomOf="@id/iv_equipment"
+            tools:text="Barbell, Barbell plate"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_video"
+            android:layout_width="@dimen/middle_icon_size"
+            android:layout_height="@dimen/middle_icon_size"
+            android:layout_marginEnd="8dp"
+            app:srcCompat="@drawable/svg_video"
+            android:tint="@color/slc_btn"
+            android:background="@drawable/drw_icon_rippled"
+            app:layout_constraintEnd_toStartOf="@id/btn_info"
+            app:layout_constraintBottom_toBottomOf="@id/btn_info"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_info"
+            android:layout_width="@dimen/middle_icon_size"
+            android:layout_height="@dimen/middle_icon_size"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@drawable/svg_info"
+            android:tint="@color/slc_btn"
+            android:background="@drawable/drw_icon_rippled"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

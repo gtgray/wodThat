@@ -1,0 +1,54 @@
+<resources>
+
+    <dimen name="bottom_navigation_size">56dp</dimen>
+    <dimen name="btn_text_padding">8dp</dimen>
+    <dimen name="btn_min_width">88dp</dimen>
+    <dimen name="btn_size">48dp</dimen>
+
+    <!-- block sizes -->
+    <dimen name="block_height_48">48dp</dimen>
+    <dimen name="block_height_58">58dp</dimen>
+    <dimen name="block_height_76">76dp</dimen>
+    <dimen name="block_height_80">80dp</dimen>
+    <dimen name="block_height_90">90dp</dimen>
+
+    <dimen name="block_width_72">72dp</dimen>
+
+    <dimen name="nano_icon_size">10dp</dimen>
+    <dimen name="micro_icon_size">16dp</dimen>
+    <dimen name="tiny_icon_size">20dp</dimen>
+    <dimen name="small_icon_size">24dp</dimen>
+    <dimen name="middle_icon_size">32dp</dimen>
+    <dimen name="large_icon_size">40dp</dimen>
+    <dimen name="huge_icon_size">48dp</dimen>
+
+    <!-- text sizes -->
+    <dimen name="text_4">4dp</dimen>
+    <dimen name="text_6">6dp</dimen>
+    <dimen name="text_8">8dp</dimen>
+    <dimen name="text_9">9dp</dimen>
+    <dimen name="text_10">10dp</dimen>
+    <dimen name="text_11">11dp</dimen>
+    <dimen name="text_12">12dp</dimen>
+    <dimen name="text_13">13dp</dimen>
+    <dimen name="text_14">14dp</dimen>
+    <dimen name="text_15">15dp</dimen>
+    <dimen name="text_16">16dp</dimen>
+    <dimen name="text_17">17dp</dimen>
+    <dimen name="text_18">18dp</dimen>
+    <dimen name="text_20">20dp</dimen>
+    <dimen name="text_22">22dp</dimen>
+    <dimen name="text_24">24dp</dimen>
+    <dimen name="text_26">26dp</dimen>
+    <dimen name="text_28">28dp</dimen>
+    <dimen name="text_30">30dp</dimen>
+    <dimen name="text_32">32dp</dimen>
+    <dimen name="text_34">34dp</dimen>
+    <dimen name="text_36">36dp</dimen>
+    <dimen name="text_40">40dp</dimen>
+    <dimen name="text_48">48dp</dimen>
+    <dimen name="text_50">50dp</dimen>
+    <dimen name="text_70">70dp</dimen>
+    <dimen name="text_90">90dp</dimen>
+
+</resources>

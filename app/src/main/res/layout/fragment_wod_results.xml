@@ -1,0 +1,53 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable name="error" type="boolean" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/clr_back"
+        >
+
+        <include
+            layout="@layout/layout_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visible="@{error}"
+            />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true"
+            >
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/vg_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/clr_back"
+                tools:title="35 results"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:visible="@{!error}"
+            />
+            android:nestedScrollingEnabled="false"
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="chipSimpleStyle" format="reference" />
+    <attr name="chipIconedStyle" format="reference" />
+
+    <declare-styleable name="BottomSheetLayoutBehavior">
+        <attr format="dimension" name="behavior_shiftHeight"/>
+    </declare-styleable>
+
+</resources>

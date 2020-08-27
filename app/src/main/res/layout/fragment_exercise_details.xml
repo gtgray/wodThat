@@ -1,0 +1,220 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable name="inProgress" type="boolean" />
+        <variable name="error" type="boolean" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/clr_back"
+        >
+
+        <include
+            layout="@layout/layout_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visible="@{error &amp;&amp; !inProgress}"
+            />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true"
+            >
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/clr_back"
+                app:titleEnabled="false"
+                >
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/vg_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/clr_back"
+                    app:navigationIcon="@drawable/svg_back_arrow"
+                    app:navigationIconColor="@{@color/clr_black}"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="14dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    tools:text="Alternating Kettlebell Shoulder Press"
+                    />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <com.google.android.material.progressindicator.ProgressIndicator
+                style="@style/Widget.MaterialComponents.ProgressIndicator.Linear.Indeterminate"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_gravity="bottom"
+                app:visible="@{inProgress}"
+                app:indicatorColor="@color/clr_accent"
+                android:background="@color/clr_back"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/vg_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:visible="@{!error &amp;&amp; !inProgress}"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                >
+
+                <TextView
+                    android:id="@+id/tv_modality"
+                    android:layout_width="@dimen/middle_icon_size"
+                    android:layout_height="@dimen/middle_icon_size"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    tools:text="W"
+                    android:textColor="@color/clr_back"
+                    android:textSize="@dimen/text_16"
+                    android:fontFamily="@string/roboto_medium"
+                    android:background="@drawable/drw_circle_back"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/vg_chip_group"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    app:chipSpacingVertical="8dp"
+                    app:chipSpacingHorizontal="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_modality"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/vg_teaser_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="iv_teaser, tv_teaser"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_teaser"
+                    android:layout_width="@dimen/small_icon_size"
+                    android:layout_height="@dimen/small_icon_size"
+                    android:layout_marginTop="16dp"
+                    app:srcCompat="@drawable/svg_info"
+                    android:tint="@color/clr_accent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vg_chip_group"
+                    />
+<!--                    app:layout_constraintTop_toBottomOf="@id/iv_equipment"-->
+
+                <TextView
+                    android:id="@+id/tv_teaser"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/clr_black_55"
+                    android:textSize="@dimen/text_12"
+                    tools:text="Burpee is a complex exercise which is used not only in Crossfit but in many other sports, where development and strength and endurance are necessary. This exercise is designed specifically for these purposes. Burpy consists of three separate exercises connected together, namely: air squats, push-ups and jumps."
+                    app:layout_constraintStart_toEndOf="@id/iv_teaser"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_teaser"
+                    />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/vg_video_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="iv_video, vg_video"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_video"
+                    android:layout_width="@dimen/small_icon_size"
+                    android:layout_height="@dimen/small_icon_size"
+                    android:layout_marginTop="16dp"
+                    app:srcCompat="@drawable/svg_video"
+                    android:tint="@color/clr_accent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_teaser"
+                    />
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/vg_video"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="8dp"
+                    app:showFullScreenButton="false"
+                    app:layout_constraintStart_toEndOf="@id/iv_video"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_video"
+                    />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/vg_desc_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="iv_desc, tv_desc"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_desc"
+                    android:layout_width="@dimen/small_icon_size"
+                    android:layout_height="@dimen/small_icon_size"
+                    android:layout_marginTop="16dp"
+                    app:srcCompat="@drawable/svg_description"
+                    android:tint="@color/clr_accent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vg_video"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/clr_black_55"
+                    android:textSize="@dimen/text_12"
+                    tools:text="How to do Squat Jumps: \n- Cross your arms over your chest.\n- With your head up and your back straight, position your feet at shoulder width.\n- Keeping your back straight and chest up, squat down as you inhale until your upper thighs are parallel, or lower, to the floor.\n- Now pressing mainly with the ball of your feet, jump straight up in the air as high as possible, using the thighs like springs. Exhale during this portion of the movement.\n- When you touch the floor again, immediately squat down and jump again.\n- Repeat for the recommended amount of repetitions.\nCaution:"
+                    app:layout_constraintStart_toEndOf="@id/iv_desc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_desc"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

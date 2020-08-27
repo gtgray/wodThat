@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/wods_fragment"
+    >
+
+    <fragment
+        android:id="@+id/wods_fragment"
+        android:name="tk.atna.wodthat.fragment.WodsFragment"
+        >
+
+        <action
+            android:id="@+id/action_wods_to_details"
+            app:destination="@id/wod_details_fragment"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/wod_details_fragment"
+        android:name="tk.atna.wodthat.fragment.WodDetailsFragment"
+        >
+
+        <argument
+            android:name="wodCode"
+            app:argType="string"
+            app:nullable="true"
+            />
+
+        <argument
+            android:name="wodName"
+            app:argType="string"
+            app:nullable="true"
+            />
+
+    </fragment>
+
+</navigation>

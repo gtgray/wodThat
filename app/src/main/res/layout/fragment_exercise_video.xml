@@ -1,0 +1,40 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="clickHandler"
+            type="tk.atna.wodthat.fragment.ExerciseVideoFragment"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/clr_back"
+        >
+
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/vg_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:showFullScreenButton="false"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:text="@string/close"
+            android:onClick="@{() -> clickHandler.onClose()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vg_video"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,255 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable name="done" type="boolean" />
+        <variable name="saved" type="boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="@drawable/drw_back_rippled"
+        android:backgroundTint="@color/clr_back"
+        >
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/clr_black_30"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/clr_black_85"
+            android:textSize="@dimen/text_18"
+            android:fontFamily="@string/roboto_medium"
+            android:maxLines="2"
+            tools:text="Crossfit Games Open Super Puper"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_rating"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginEnd="48dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_headline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/clr_black_85"
+            android:textSize="@dimen/text_12"
+            android:fontFamily="@string/roboto_medium"
+            android:maxLines="2"
+            tools:text="Complete as many rounds as possible in 12 minutes of:"
+            app:layout_constraintStart_toStartOf="@id/tv_name"
+            app:layout_constraintEnd_toEndOf="@id/tv_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            />
+
+        <TextView
+            android:id="@+id/tv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_icon_size"
+            android:layout_marginEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:gravity="center"
+            tools:text="7.0/10"
+            android:textColor="@color/clr_back"
+            android:textSize="@dimen/text_14"
+            android:fontFamily="@string/roboto_medium"
+            android:background="@drawable/drw_label_small_rounded"
+            app:layout_constraintEnd_toStartOf="@id/tv_modality"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_name"
+            />
+
+        <TextView
+            android:id="@+id/tv_modality"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_icon_size"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:gravity="center"
+            tools:text="GWM"
+            android:textColor="@color/clr_back"
+            android:textSize="@dimen/text_14"
+            android:fontFamily="@string/roboto_medium"
+            android:background="@drawable/drw_label_small_rounded"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_name"
+            />
+
+        <TextView
+            android:id="@+id/tv_tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="end"
+            android:textColor="@color/clr_black_55"
+            android:textSize="@dimen/text_10"
+            android:lineSpacingExtra="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_modality"
+            app:layout_constraintBottom_toTopOf="@id/btn_save"
+            app:layout_constraintVertical_bias="0"
+            tools:text="Personal\nTeam\nSinglet\nBodyweight\nFor-Time"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_done"
+            android:layout_width="@dimen/small_icon_size"
+            android:layout_height="@dimen/small_icon_size"
+            android:layout_marginEnd="8dp"
+            android:padding="4dp"
+            app:srcCompat="@drawable/svg_done"
+            android:tint="@color/clr_back"
+            android:background="@drawable/drw_circle_back"
+            app:visible="@{done}"
+            app:layout_constraintEnd_toStartOf="@id/btn_save"
+            app:layout_constraintTop_toTopOf="@id/btn_save"
+            app:layout_constraintBottom_toBottomOf="@id/btn_save"
+            app:layout_goneMarginEnd="0dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_save"
+            android:layout_width="@dimen/middle_icon_size"
+            android:layout_height="@dimen/middle_icon_size"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:src="@{saved ? @drawable/svg_star : @drawable/svg_star_outlined}"
+            android:tint="@color/clr_accent"
+            android:background="@drawable/drw_icon_rippled"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/vg_wod_items"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_tags"
+            app:layout_constraintTop_toBottomOf="@id/tv_headline"
+            app:layout_constraintHorizontal_bias="0"
+            />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/vg_duration_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="iv_duration, tv_duration"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_duration"
+            android:layout_width="@dimen/micro_icon_size"
+            android:layout_height="@dimen/micro_icon_size"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@drawable/svg_duration"
+            android:tint="@color/clr_accent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vg_wod_items"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="1"
+            />
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/clr_black_55"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintStart_toEndOf="@id/iv_duration"
+            app:layout_constraintTop_toTopOf="@id/iv_duration"
+            app:layout_constraintBottom_toBottomOf="@id/iv_duration"
+            tools:text="02:23:54"
+            />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/vg_results_count_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="iv_results_count, tv_results_count"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_results_count"
+            android:layout_width="@dimen/micro_icon_size"
+            android:layout_height="@dimen/micro_icon_size"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@drawable/svg_results"
+            android:tint="@color/clr_accent"
+            app:layout_constraintStart_toEndOf="@id/tv_duration"
+            app:layout_constraintTop_toTopOf="@id/iv_duration"
+            app:layout_constraintVertical_bias="1"
+            />
+
+        <TextView
+            android:id="@+id/tv_results_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/clr_black_55"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintStart_toEndOf="@id/iv_results_count"
+            app:layout_constraintTop_toTopOf="@id/iv_results_count"
+            app:layout_constraintBottom_toBottomOf="@id/iv_results_count"
+            tools:text="1234"
+            />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/vg_comments_count_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="iv_comments_count, tv_comments_count"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_comments_count"
+            android:layout_width="@dimen/micro_icon_size"
+            android:layout_height="@dimen/micro_icon_size"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@drawable/svg_comment"
+            android:tint="@color/clr_accent"
+            app:layout_constraintStart_toEndOf="@id/tv_results_count"
+            app:layout_constraintTop_toTopOf="@id/iv_results_count"
+            app:layout_constraintVertical_bias="1"
+            />
+
+        <TextView
+            android:id="@+id/tv_comments_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/clr_black_55"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintStart_toEndOf="@id/iv_comments_count"
+            app:layout_constraintTop_toTopOf="@id/iv_comments_count"
+            app:layout_constraintBottom_toBottomOf="@id/iv_comments_count"
+            tools:text="4321"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

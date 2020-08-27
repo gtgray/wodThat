@@ -1,0 +1,161 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable name="done" type="boolean" />
+        <variable name="saved" type="boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="@drawable/drw_back_rippled"
+        android:backgroundTint="@color/clr_back"
+        >
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/clr_black_30"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_user"
+            style="@style/Style.Shape.Round"
+            android:layout_width="@dimen/large_icon_size"
+            android:layout_height="@dimen/large_icon_size"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="fitXY"
+            tools:src="@drawable/svg_kettlebell"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_user"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/clr_black_85"
+            android:textSize="@dimen/text_14"
+            tools:text="Johnny Dick"
+            app:layout_constraintStart_toEndOf="@id/iv_user"
+            app:layout_constraintEnd_toStartOf="@id/tv_rank"
+            app:layout_constraintTop_toTopOf="@id/iv_user"
+            app:layout_goneMarginEnd="48dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_rank"
+            android:layout_width="@dimen/small_icon_size"
+            android:layout_height="@dimen/small_icon_size"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            tools:text="4"
+            android:textColor="@color/clr_black_55"
+            android:textSize="@dimen/text_14"
+            android:fontFamily="@string/roboto_medium"
+            android:background="@drawable/drw_circle_back"
+            android:backgroundTint="@color/clr_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_user"
+            />
+            android:visibility="gone"
+
+        <TextView
+            android:id="@+id/tv_rxed"
+            android:layout_width="@dimen/micro_icon_size"
+            android:layout_height="@dimen/micro_icon_size"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="@string/rx"
+            android:textColor="@color/clr_accent"
+            android:textSize="@dimen/text_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_flag"
+            android:layout_width="16dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            tools:src="@drawable/svg_kettlebell"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toEndOf="@id/iv_user"
+            app:layout_constraintTop_toTopOf="@id/tv_date"
+            app:layout_constraintBottom_toBottomOf="@id/tv_date"
+            />
+            android:visibility="gone"
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_gender"
+            android:layout_width="@dimen/nano_icon_size"
+            android:layout_height="@dimen/nano_icon_size"
+            android:layout_marginStart="32dp"
+            app:srcCompat="@drawable/svg_male"
+            android:tint="@color/clr_accent"
+            app:layout_constraintStart_toEndOf="@id/iv_user"
+            app:layout_constraintTop_toTopOf="@id/tv_date"
+            app:layout_constraintBottom_toBottomOf="@id/tv_date"
+            />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="58dp"
+            android:textColor="@color/clr_black_85"
+            android:textSize="@dimen/text_12"
+            tools:text="20.10.2019"
+            app:layout_constraintStart_toEndOf="@id/iv_user"
+            app:layout_constraintTop_toBottomOf="@id/tv_user"
+            />
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:gravity="start"
+            android:textColor="@color/clr_black_85"
+            android:textSize="@dimen/text_12"
+            android:fontFamily="@string/roboto_medium"
+            tools:text="09:12:05"
+            app:layout_constraintStart_toEndOf="@id/tv_date"
+            app:layout_constraintTop_toBottomOf="@id/tv_user"
+            />
+
+        <TextView
+            android:id="@+id/tv_reps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:maxWidth="88dp"
+            android:gravity="start"
+            android:textColor="@color/clr_black_85"
+            android:textSize="@dimen/text_12"
+            android:fontFamily="@string/roboto_medium"
+            tools:text="2340(100+129)"
+            app:layout_constraintStart_toEndOf="@id/tv_duration"
+            app:layout_constraintTop_toBottomOf="@id/tv_user"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

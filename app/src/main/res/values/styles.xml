@@ -1,0 +1,73 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Theme.NoActionbar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/clr_back_dark</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="colorPrimaryDark">@color/clr_primary_dark</item>
+        <item name="colorPrimary">@color/clr_primary</item>
+        <item name="colorAccent">@color/clr_accent</item>
+        <item name="android:windowBackground">@color/clr_primary</item>
+        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
+<!--        <item name="android:colorEdgeEffect">@color/clr_dark_slate_blue_30</item>-->
+        <item name="colorControlHighlight">@color/clr_accent_15</item>
+        <item name="chipSimpleStyle">@style/Style.Chip.Outlined</item>
+        <item name="chipIconedStyle">@style/Style.Chip.Iconed.Outlined</item>
+    </style>
+
+<!--    <style name="Style.Button.Flat" parent="Widget.MaterialComponents.Button.TextButton">-->
+<!--        <item name="android:layout_width">wrap_content</item>-->
+<!--        <item name="android:layout_height">@dimen/block_height_48</item>-->
+<!--        <item name="android:minWidth">@dimen/btn_min_width</item>-->
+<!--        <item name="android:padding">@dimen/btn_text_padding</item>-->
+<!--        <item name="android:textSize">@dimen/text_14</item>-->
+<!--        <item name="android:textColor">@color/clr_accent</item>-->
+<!--    </style>-->
+
+    <style name="Style.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+<!--        <item name="shapeAppearanceLargeComponent">@style/Style.ShapeAppearance.Radius10</item>-->
+        <item name="shapeAppearanceOverlay">@style/Style.ShapeAppearance.Radius10</item>
+        <item name="android:background">@color/clr_transparent</item>
+    </style>
+
+<!--    <style name="Style.ShapeAppearance.Radius10" parent="ShapeAppearance.MaterialComponents">-->
+    <style name="Style.ShapeAppearance.Radius10" parent="">
+        <item name="cornerFamily">rounded</item>
+<!--        <item name="cornerSize">10dp</item>-->
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">10dp</item>
+    </style>
+
+    <style name="Style.Shape.Round" parent="">
+<!--        <item name="shapeAppearance">?attr/shapeAppearanceLargeComponent</item>-->
+        <item name="shapeAppearanceOverlay">@style/Style.ShapeAppearance.Round</item>
+    </style>
+
+    <style name="Style.ShapeAppearance.Round" parent="ShapeAppearance.MaterialComponents">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Style.Chip.Iconed.Outlined" parent="Style.Chip.Outlined">
+        <item name="chipIconVisible">true</item>
+        <item name="iconStartPadding">4dp</item>
+    </style>
+
+    <style name="Style.Chip.Outlined" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:checkable">false</item>
+        <item name="chipSurfaceColor">@null</item>
+        <item name="chipBackgroundColor">@null</item>
+        <item name="chipStrokeColor">@color/clr_primary_30</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/clr_primary_85</item>
+        <item name="checkedIconVisible">true</item>
+<!--        <item name="android:textAppearance">@style/Style.Chip.TextAppearance</item>-->
+    </style>
+
+<!--    <style name="Style.Chip.TextAppearance" parent="TextAppearance.MaterialComponents.Body2">-->
+<!--        <item name="android:textColor">@color/clr_accent</item>-->
+<!--    </style>-->
+
+</resources>

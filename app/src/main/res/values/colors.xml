@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="clr_transparent">#00000000</color>
+    <color name="clr_white">#ffffffff</color>
+    <!--<color name="clr_white_30">#4dffffff</color>-->
+    <color name="clr_white_55">#8cffffff</color>
+    <color name="clr_white_70">#b3ffffff</color>
+    <color name="clr_white_85">#d9ffffff</color>
+    <!--<color name="clr_white_90">#E6ffffff</color>-->
+
+    <color name="clr_black">#ff000000</color>
+    <!--<color name="clr_black_3">#08000000</color>-->
+    <!--<color name="clr_black_5">#0d000000</color>-->
+    <color name="clr_black_10">#1A000000</color>
+    <color name="clr_black_15">#26000000</color>
+    <!--<color name="clr_black_20">#33000000</color>-->
+    <!--<color name="clr_black_25">#40000000</color>-->
+    <color name="clr_black_30">#4d000000</color>
+    <color name="clr_black_40">#66000000</color>
+    <!--<color name="clr_black_45">#73000000</color>-->
+    <color name="clr_black_55">#8c000000</color>
+    <!--<color name="clr_black_75">#bf000000</color>-->
+    <color name="clr_black_85">#d9000000</color>
+
+    <color name="clr_primary_dark">@color/clr_melanzane</color>
+    <color name="clr_primary">@color/clr_loulou</color>
+    <color name="clr_primary_85">@color/clr_loulou_85</color>
+    <color name="clr_primary_30">@color/clr_loulou_30</color>
+    <color name="clr_accent">@color/clr_orange_red</color>
+    <color name="clr_accent_55">@color/clr_orange_red_55</color>
+    <color name="clr_accent_15">@color/clr_orange_red_15</color>
+    <color name="clr_back_dark">@color/clr_cement</color>
+    <color name="clr_back">@color/clr_navajo_white</color>
+
+    <color name="clr_cement">#ff806f58</color>
+    <color name="clr_navajo_white">#ffffdeb0</color>
+    <color name="clr_melanzane">#ff2c1424</color>
+    <color name="clr_loulou">#ff582949</color>
+    <color name="clr_loulou_85">#d9582949</color>
+    <color name="clr_loulou_30">#4d582949</color>
+    <color name="clr_orange_red">#ffff4313</color>
+    <color name="clr_orange_red_55">#8cff4313</color>
+    <color name="clr_orange_red_15">#26ff4313</color>
+    <color name="clr_gold">#ffffd700</color>
+    <color name="clr_silver">#ffc0c0c0</color>
+    <color name="clr_bronze">#ffcd7f32</color>
+
+
+
+</resources>

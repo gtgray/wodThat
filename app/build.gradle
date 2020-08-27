@@ -116,10 +116,14 @@ dependencies {
 
     implementation deps.google.material
     implementation deps.google.maps
+//    implementation deps.google.exoplayer_core
+//    implementation deps.google.exoplayer_ui
+//    implementation deps.google.exoplayer_dash
 
     implementation deps.androidx.appcompat
     implementation deps.androidx.constraint_layout
     implementation deps.androidx.recyclerview
+//    implementation deps.androidx.slidingpanelayout
 //    implementation deps.androidx.viewpager2
 // android studio 4+ is required!!!
 //    implementation deps.androidx.compose_ui
@@ -163,6 +167,8 @@ dependencies {
     implementation deps.other.moshi
     implementation deps.other.moshi_adapters
 //    implementation deps.other.gson
+    implementation deps.other.youtube_player
+
 }
 
 configurations.all {

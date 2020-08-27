@@ -1,0 +1,77 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <variable
+            name="clickHandler"
+            type="tk.atna.wodthat.fragment.ExercisesFragment"
+            />
+        <variable name="inProgress" type="boolean" />
+        <variable name="error" type="boolean" />
+    </data>
+
+    <tk.atna.wodthat.view.NonTouchableCoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/clr_back"
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true"
+            >
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/vg_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/clr_back"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:title="@string/exercises"
+                />
+<!--                app:menu="@menu/top_app_bar"-->
+<!--                app:navigationIcon="@drawable/ic_menu_24dp"-->
+
+            <com.google.android.material.progressindicator.ProgressIndicator
+                style="@style/Widget.MaterialComponents.ProgressIndicator.Linear.Indeterminate"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                app:visible="@{inProgress}"
+                app:indicatorColor="@color/clr_accent"
+                android:background="@color/clr_back"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+<!--            >-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_exercises"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:visible="@{!error &amp;&amp; !inProgress}"
+                />
+
+            <include
+                layout="@layout/layout_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                app:visible="@{error &amp;&amp; !inProgress}"
+                />
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    </tk.atna.wodthat.view.NonTouchableCoordinatorLayout>
+
+</layout>

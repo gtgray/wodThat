@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/exercises_nav_graph"
+    app:startDestination="@id/exercises_fragment"
+    >
+
+    <fragment
+        android:id="@+id/exercises_fragment"
+        android:name="tk.atna.wodthat.fragment.ExercisesFragment"
+        >
+
+        <action
+            android:id="@+id/action_exercises_to_details"
+            app:destination="@id/exercise_details_fragment"
+            />
+
+        <action
+            android:id="@+id/action_exercises_to_video"
+            app:destination="@id/exercise_video_fragment"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/exercise_details_fragment"
+        android:name="tk.atna.wodthat.fragment.ExerciseDetailsFragment"
+        >
+
+        <argument
+            android:name="exerciseCode"
+            app:argType="string"
+            app:nullable="true"
+            />
+
+        <argument
+            android:name="exerciseName"
+            app:argType="string"
+            app:nullable="true"
+            />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/exercise_video_fragment"
+        android:name="tk.atna.wodthat.fragment.ExerciseVideoFragment"
+        >
+
+        <argument
+            android:name="videoId"
+            app:argType="string"
+            app:nullable="true"
+            />
+
+    </dialog>
+
+</navigation>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?android:attr/colorControlHighlight"
+    >
+    <!--android:radius="20dp"-->
+
+    <!--<item-->
+        <!--android:id="@android:id/mask"-->
+        <!--android:drawable="@drawable/svg_circle"-->
+        <!--/>-->
+
+    <!-- todo: ripple size is defined by container size -->
+    <!-- todo: (ripple.android:radius doesn't not work below 23 api). -->
+    <!-- todo: button width and height values must be equal -->
+    <!-- todo: for the ripple to be round, not oval -->
+
+    <item
+        android:id="@android:id/mask"
+        android:drawable="@drawable/drw_card_rounded"
+        />
+
+    <item
+        android:drawable="@drawable/drw_card_rounded"
+        />
+
+</ripple>

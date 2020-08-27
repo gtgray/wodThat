@@ -1,0 +1,428 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="clickHandler"
+            type="tk.atna.wodthat.fragment.WodDetailsFragment"
+            />
+        <variable name="inProgress" type="boolean" />
+        <variable name="error" type="boolean" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/clr_back"
+        >
+
+        <include
+            layout="@layout/layout_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visible="@{error &amp;&amp; !inProgress}"
+            />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true"
+            app:liftOnScrollTargetViewId="@id/vg_scrollview"
+            >
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/clr_back"
+                app:titleEnabled="false"
+                >
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/vg_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/clr_back"
+                    app:navigationIcon="@drawable/svg_back_arrow"
+                    app:navigationIconColor="@{@color/clr_black}"
+                    />
+                    app:title="Alternating"
+
+                <TextView
+                    android:id="@+id/tv_toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="14dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    tools:text="Alternating Kettlebell Shoulder Press"
+                    />
+                    tools:text="Alternating"
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <com.google.android.material.progressindicator.ProgressIndicator
+                style="@style/Widget.MaterialComponents.ProgressIndicator.Linear.Indeterminate"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_gravity="bottom"
+                app:visible="@{inProgress}"
+                app:indicatorColor="@color/clr_accent"
+                android:background="@color/clr_back"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/vg_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:visible="@{!error &amp;&amp; !inProgress}"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="85dp"
+                >
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/middle_icon_size"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:gravity="center"
+                    tools:text="7.0/10"
+                    android:textColor="@color/clr_back"
+                    android:textSize="@dimen/text_16"
+                    android:fontFamily="@string/roboto_medium"
+                    android:background="@drawable/drw_label_middle_rounded"
+                    app:layout_constraintEnd_toStartOf="@id/tv_modality"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_modality"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_modality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/middle_icon_size"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:gravity="center"
+                    tools:text="GWM"
+                    android:textColor="@color/clr_back"
+                    android:textSize="@dimen/text_16"
+                    android:fontFamily="@string/roboto_medium"
+                    android:background="@drawable/drw_label_middle_rounded"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_author"
+                    style="@style/Style.Shape.Round"
+                    android:layout_width="@dimen/large_icon_size"
+                    android:layout_height="@dimen/large_icon_size"
+                    android:layout_marginTop="4dp"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/svg_kettlebell"
+                    android:backgroundTint="@color/clr_accent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_author"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/clr_black_85"
+                    android:textSize="@dimen/text_16"
+                    tools:text="WodThatBot"
+                    app:layout_constraintStart_toEndOf="@id/iv_author"
+                    app:layout_constraintEnd_toStartOf="@id/tv_rating"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_author"
+                    app:layout_goneMarginEnd="48dp"
+                    />
+
+                <HorizontalScrollView
+                    android:id="@+id/vg_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    app:layout_constraintTop_toBottomOf="@id/iv_author"
+                    >
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/vg_chip_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:singleLine="true"
+                        app:chipSpacingHorizontal="8dp"
+                        />
+
+                </HorizontalScrollView>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_items"
+                    android:layout_width="@dimen/small_icon_size"
+                    android:layout_height="@dimen/small_icon_size"
+                    android:layout_marginTop="16dp"
+                    app:srcCompat="@drawable/svg_items"
+                    android:tint="@color/clr_accent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vg_chips"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_headline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/clr_black_85"
+                    android:textSize="@dimen/text_16"
+                    android:fontFamily="@string/roboto_medium"
+                    tools:text="Complete as many rounds as possible in 48 minutes of:"
+                    app:layout_constraintStart_toEndOf="@id/iv_items"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_items"
+                    />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/vg_wod_items"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@id/tv_headline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_headline"
+                    />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/vg_duration_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="iv_duration, tv_duration"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_duration"
+                    android:layout_width="@dimen/small_icon_size"
+                    android:layout_height="@dimen/small_icon_size"
+                    android:layout_marginTop="24dp"
+                    app:srcCompat="@drawable/svg_duration"
+                    android:tint="@color/clr_accent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vg_wod_items"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_duration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/clr_black_55"
+                    android:textSize="@dimen/text_16"
+                    tools:text="Duration: 10:10:10"
+                    app:layout_constraintStart_toEndOf="@id/iv_duration"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_duration"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_duration"
+                    />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/vg_desc_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="iv_desc, tv_desc"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_desc"
+                    android:layout_width="@dimen/small_icon_size"
+                    android:layout_height="@dimen/small_icon_size"
+                    android:layout_marginTop="16dp"
+                    app:srcCompat="@drawable/svg_description"
+                    android:tint="@color/clr_accent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_duration"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/clr_black_55"
+                    android:textSize="@dimen/text_16"
+                    tools:text="All exercises except running, are performed with 2 kettlebell\nIt is possible to replace run - row(100m) or Kettlebell Sumo Deadlift High Pull(100rep.)"
+                    app:layout_constraintStart_toEndOf="@id/iv_desc"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_desc"
+                    />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/vg_video_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="iv_video, vg_video"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_video"
+                    android:layout_width="@dimen/small_icon_size"
+                    android:layout_height="@dimen/small_icon_size"
+                    android:layout_marginTop="16dp"
+                    app:srcCompat="@drawable/svg_video"
+                    android:tint="@color/clr_accent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_desc"
+                    />
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/vg_video"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="8dp"
+                    app:showFullScreenButton="false"
+                    app:layout_constraintStart_toEndOf="@id/iv_video"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_video"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- todo: setting exact behavior_peekHeight value doesn't work without -->
+        <!--  gestureInsetBottomIgnored = true. see link below for more details -->
+        <!--  https://github.com/material-components/material-components-android/issues/1219 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/vg_results"
+            style="@style/Style.BottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/clr_back"
+            android:elevation="8dp"
+            app:behavior_shiftHeight="13dp"
+            app:behavior_hideable="false"
+            app:behavior_peekHeight="69dp"
+            app:gestureInsetBottomIgnored="true"
+            app:layout_behavior="tk.atna.wodthat.internal.BottomSheetLayoutBehavior"
+            android:visibility="gone"
+            >
+            android:layout_gravity="bottom"
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/vg_appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/clr_back"
+                app:liftOnScroll="true"
+                app:liftOnScrollTargetViewId="@id/rv_results"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_handle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center_horizontal"
+                    app:srcCompat="@drawable/svg_handle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_close"
+                        android:layout_width="@dimen/large_icon_size"
+                        android:layout_height="@dimen/large_icon_size"
+                        android:layout_marginStart="8dp"
+                        app:srcCompat="@drawable/svg_down"
+                        android:tint="@color/clr_black_55"
+                        android:background="@drawable/drw_icon_rippled"
+                        android:onClick="@{() -> clickHandler.onCloseClick()}"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_results"
+                        android:layout_width="@dimen/small_icon_size"
+                        android:layout_height="@dimen/small_icon_size"
+                        android:layout_gravity="center_vertical"
+                        app:srcCompat="@drawable/svg_results"
+                        android:tint="@color/clr_accent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tv_results"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_results"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/clr_black_55"
+                        android:textSize="@dimen/text_16"
+                        tools:text="123 results"
+                        app:layout_constraintStart_toEndOf="@id/iv_results"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/iv_results"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_results"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintTop_toBottomOf="@id/vg_appbar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

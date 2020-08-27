@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- item ids -->
+    <item name="item_home" type="id"/>
+    <item name="item_exercises" type="id"/>
+    <item name="item_saved" type="id"/>
+    <item name="item_profile" type="id"/>
+
+    <!--<item name="" type="id"/>-->
+
+</resources>
